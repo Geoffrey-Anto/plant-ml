@@ -13,7 +13,7 @@ print("Press 1 for image")
 print("Press 2 for video")
 inputFormat = input()
 
-if inputFormat == "image":
+if inputFormat == "1":
     from tkinter import Label,Tk
     from PIL import Image, ImageTk
     from tkinter import filedialog
@@ -35,7 +35,7 @@ if inputFormat == "image":
     myvar.image = tkimage
     myvar.pack()
     root.mainloop()
-elif inputFormat == "video":
+elif inputFormat == "2":
     import cv2 as cv
     cam = cv.VideoCapture(0)
     if not cam.isOpened():
@@ -52,6 +52,7 @@ elif inputFormat == "video":
         img_np = img_np.reshape(1, 256, 256, 3)
         prediction = model.predict(img_np)
         prediction = np.argmax(prediction)
+        print(prediction)
         pred = config.classes[prediction]
         pred = pred.capitalize()
         pred = "Prediction: " + pred
